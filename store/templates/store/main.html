@@ -112,8 +112,8 @@
 </head>
 <body>
 
-   <!-- Navbar -->
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="{% url 'store' %}">Jaba</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -124,24 +124,21 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="{% url 'store' %}">Boutique <span class="sr-only">(current)</span></a>
                 </li>
-				 <!-- Formulaire de recherche -->
-				 <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'store' %}">
-					<input class="form-control mr-sm-2" type="search" placeholder="Que voulez-vous acheter?" aria-label="Search" name="q">
-					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
-				</form>
-			</ul>
-	
+                <!-- Formulaire de recherche -->
+                <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'store' %}">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Que voulez-vous acheter?" aria-label="Search" name="q">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
+                </form>
             </ul>
-
 
             <!-- Formulaire de connexion/inscription et panier -->
             <div class="form-inline my-2 my-lg-0">
                 {% if request.user.is_authenticated %}
                     <a href="#" class="btn btn-warning mr-2">{{ request.user.username }}</a>
-                    <a href="" class="btn btn-danger">Déconnexion</a>
+                    <a href="{% url 'log_out' %}" class="btn btn-danger">Déconnexion</a>
                 {% else %}
                     <a href="{% url 'sing_up' %}" class="btn btn-primary mr-2">Inscription</a>
-                    <a href="{% url 'log_out' %}" class="btn btn-success">Connexion</a>
+                    <a href="{% url 'sing_in' %}" class="btn btn-success">Connexion</a>
                 {% endif %}
 
                 <!-- Icône du panier -->
@@ -162,13 +159,6 @@
         <!-- Contenu spécifique aux pages enfants -->
         {% endblock content %}
     </div>
-
-    <!-- Footer -->
-    <footer class="footer bg-dark text-white text-center py-3">
-        <div class="container">
-            <p>&copy; 2024 Jaba. Tous droits réservés.</p>
-        </div>
-    </footer>
 
     <!-- Scripts JavaScript -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

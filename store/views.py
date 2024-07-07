@@ -5,6 +5,27 @@ import datetime
 from .models import Product, Order, OrderItem, ShippingAddress
 from .utils import cartData, guestOrder
 from django.db.models import Q
+from .models import Product, Customer
+from django.contrib.auth import get_user_model
+
+
+
+User = get_user_model()
+def store(request):
+    data = cartData(request)
+    cartItems = data['cartItems']
+    products = Product.objects.all()
+
+    # Vérifie si l'utilisateur est authentifié et crée un Customer si nécessaire
+    if request.user.is_authenticated:
+        try:
+            customer = request.user.customer  # Tente d'accéder à un Customer existant pour l'utilisateur
+        except Customer.DoesNotExist:
+            # Si le Customer n'existe pas, le créer avec l'email de l'utilisateur actuel
+            Customer.objects.create(user=request.user, email=request.user.email)
+    
+    context = {'products': products, 'cartItems': cartItems}
+    return render(request, 'store/store.html', context)
 
 def get(request):
     products = Product.objects.all()
