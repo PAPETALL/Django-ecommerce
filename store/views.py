@@ -6,7 +6,6 @@ from .models import Product, Order, OrderItem, ShippingAddress
 from .utils import cartData, guestOrder
 from django.db.models import Q
 
-
 def get(request):
     products = Product.objects.all()
     q = request.GET.get("q")

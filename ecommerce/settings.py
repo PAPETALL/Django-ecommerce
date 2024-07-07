@@ -37,9 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-     'account.apps.AccountConfig',
+    'account.apps.AccountConfig',
     'store.apps.StoreConfig',
     'rest_framework',
+     'users',
+    
 ]
 
 MIDDLEWARE = [
@@ -129,3 +131,9 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/images/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+
+# Ajout de la configuration du champ primaire par défaut
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Configuration du modèle utilisateur personnalisé
+AUTH_USER_MODEL = 'users.User'
